@@ -1,0 +1,5 @@
+{
+  "name": "ShowRunner",
+  "description": "The central command center for live music events. Manage tour itineraries, production schedules, and logistics in a single, real-time platform.",
+  "requestFramePermissions": []
+}
