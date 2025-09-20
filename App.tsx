@@ -393,7 +393,15 @@ const App: React.FC = () => {
     // --- RIDER IMPORT ---
     const handleProcessRider = async (riderText: string): Promise<RiderParseResult> => {
         if (!currentUser) throw new Error("No user logged in");
-        return await parseRiderWithGemini(riderText, people);
+        try {
+            return await parseRiderWithGemini(riderText, people);
+        } catch (error: any) {
+            // This will catch the error from getAiClient if the API key is missing
+            // and display it to the user, preventing a white screen crash.
+            alert(error.message);
+            // Return an empty result to fulfill the promise and prevent further errors.
+            return { tasks: [], budgetItems: [] };
+        }
     };
     
     const handleApplyRiderData = (data: RiderParseResult) => {
